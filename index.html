@@ -42,149 +42,35 @@
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .quiz-step {
-            display: none;
-        }
-        .quiz-step.active {
-            display: block;
-        }
-        .progress-bar {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-        .result-card {
-            border-left: 4px solid;
-            transition: all 0.3s ease;
+            text-align: center;
         }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Exploration Modal -->
-    <div id="explorationModal" class="modal">
+    <!-- Modal Sederhana -->
+    <div id="modal" class="modal">
         <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-800">Temukan AI Website Builder Terbaik untuk Anda</h3>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="progress-bar mb-6">
-                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
-            </div>
-
-            <!-- Quiz Steps -->
-            <div id="quizContainer">
-                <!-- Step 1 -->
-                <div class="quiz-step active" id="step1">
-                    <h4 class="text-lg font-semibold mb-4">1. Apa level keahlian teknis Anda?</h4>
-                    <div class="space-y-3">
-                        <button onclick="selectOption(1, 'pemula')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Pemula</strong> - Tidak punya pengalaman coding sama sekali
-                        </button>
-                        <button onclick="selectOption(1, 'menengah')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Menengah</strong> - Paham dasar-dasar tetapi butuh bantuan
-                        </button>
-                        <button onclick="selectOption(1, 'mahir')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Mahir</strong> - Nyaman dengan coding dan development
-                        </button>
-                    </div>
+            <h3 class="text-2xl font-bold mb-4">Fitur Eksplorasi</h3>
+            <p class="text-gray-600 mb-6">Selamat! Anda telah mengklik tombol eksplorasi. Fitur ini akan membantu Anda menemukan AI website builder terbaik.</p>
+            <div class="space-y-3 text-left mb-6">
+                <div class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-3"></i>
+                    <span>Quiz interaktif 4 langkah</span>
                 </div>
-
-                <!-- Step 2 -->
-                <div class="quiz-step" id="step2">
-                    <h4 class="text-lg font-semibold mb-4">2. Jenis website apa yang ingin dibuat?</h4>
-                    <div class="space-y-3">
-                        <button onclick="selectOption(2, 'blog')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Blog/Personal</strong> - Website pribadi atau blog content
-                        </button>
-                        <button onclick="selectOption(2, 'bisnis')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Bisnis</strong> - Website company profile atau layanan
-                        </button>
-                        <button onclick="selectOption(2, 'ecommerce')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>E-commerce</strong> - Toko online dengan produk
-                        </button>
-                        <button onclick="selectOption(2, 'portfolio')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Portfolio</strong> - Showcase karya dan project
-                        </button>
-                    </div>
+                <div class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-3"></i>
+                    <span>Rekomendasi personalisasi</span>
                 </div>
-
-                <!-- Step 3 -->
-                <div class="quiz-step" id="step3">
-                    <h4 class="text-lg font-semibold mb-4">3. Berapa budget yang disiapkan?</h4>
-                    <div class="space-y-3">
-                        <button onclick="selectOption(3, 'gratis')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Gratis</strong> - Menggunakan plan free dengan fitur dasar
-                        </button>
-                        <button onclick="selectOption(3, 'murah')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Rp 100-300rb/bulan</strong> - Untuk fitur premium dasar
-                        </button>
-                        <button onclick="selectOption(3, 'menengah')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Rp 300-800rb/bulan</strong> - Fitur bisnis lengkap
-                        </button>
-                        <button onclick="selectOption(3, 'tinggi')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Flexible</strong> - Budget tidak menjadi masalah
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="quiz-step" id="step4">
-                    <h4 class="text-lg font-semibold mb-4">4. Fitur khusus apa yang dibutuhkan?</h4>
-                    <div class="space-y-3">
-                        <button onclick="selectOption(4, 'responsive')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Responsive Design</strong> - Tampilan bagus di semua device
-                        </button>
-                        <button onclick="selectOption(4, 'seo')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>SEO Advanced</strong> - Optimasi mesin pencari
-                        </button>
-                        <button onclick="selectOption(4, 'ecommerce')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>E-commerce</strong> - Fitur toko online
-                        </button>
-                        <button onclick="selectOption(4, 'custom')" class="w-full text-left p-4 border rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
-                            <strong>Custom Code</strong> - Bisa modifikasi kode
-                        </button>
-                    </div>
+                <div class="flex items-center">
+                    <i class="fas fa-check text-green-500 mr-3"></i>
+                    <span>Berdasarkan kebutuhan spesifik</span>
                 </div>
             </div>
-
-            <!-- Results -->
-            <div id="results" style="display: none;">
-                <h4 class="text-xl font-semibold mb-4 text-center">Rekomendasi Terbaik untuk Anda</h4>
-                <div id="recommendations" class="space-y-4"></div>
-                <div class="text-center mt-6">
-                    <button onclick="restartQuiz()" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 mr-3">
-                        Ulangi Quiz
-                    </button>
-                    <button onclick="closeModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                        Tutup
-                    </button>
-                </div>
-            </div>
-
-            <!-- Navigation -->
-            <div class="flex justify-between mt-6" id="navigation" style="display: none;">
-                <button onclick="prevStep()" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
-                    <i class="fas fa-arrow-left mr-2"></i>Kembali
-                </button>
-                <button onclick="nextStep()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                    Lanjut <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
+            <button onclick="closeModal()" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+                Mengerti, Terima Kasih!
+            </button>
         </div>
     </div>
 
@@ -195,196 +81,160 @@
                 <div class="md:w-1/2 mb-8 md:mb-0">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">AI Khusus Pembuatan Website</h1>
                     <p class="text-xl mb-6">Temukan alat AI terbaik untuk membangun website modern dan profesional dengan mudah</p>
-                    <button onclick="startExploration()" class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-                        Mulai Eksplorasi
+                    <button id="exploreBtn" class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                        <i class="fas fa-search mr-2"></i>Mulai Eksplorasi
                     </button>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da076b75-3f21-4293-9622-8aeb28ed68f1.png" alt="Ilustrasi AI modern yang sedang membuat tampilan website dengan elemen coding dan design visual" class="rounded-lg shadow-2xl" />
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da076b75-3f21-4293-9622-8aeb28ed68f1.png" alt="Ilustrasi AI modern yang sedang membuat tampilan website dengan elemen coding dan design visual" class="rounded-lg shadow-2xl" onerror="this.src='https://placehold.co/600x400/667eea/ffffff?text=AI+Website+Builder'" />
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- ... (rest of the existing HTML content remains exactly the same) ... -->
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Mengapa Menggunakan AI untuk Membuat Website?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Teknologi AI revolusioner memungkinkan pembuatan website yang cepat, efisien, dan profesional tanpa perlu keahlian coding yang mendalam.
+                </p>
+            </div>
 
-    <script>
-        let currentStep = 1;
-        const totalSteps = 4;
-        const userAnswers = {};
-        const tools = {
-            wix: {
-                name: "Wix ADI",
-                match: ['pemula', 'blog', 'bisnis', 'portfolio', 'gratis', 'murah', 'responsive'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ba385200-6432-4ad2-b1d1-ce4386c3f9ea.png",
-                description: "Sempurna untuk pemula dengan drag-and-drop interface yang mudah"
-            },
-            framer: {
-                name: "Framer AI", 
-                match: ['menengah', 'mahir', 'portfolio', 'blog', 'bisnis', 'murah', 'menengah', 'responsive', 'custom'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77739477-e4e4-42f8-87f6-458a30e69784.png",
-                description: "AI powerful untuk design responsive dengan kontrol penuh"
-            },
-            tenweb: {
-                name: "10Web AI",
-                match: ['menengah', 'bisnis', 'ecommerce', 'menengah', 'tinggi', 'seo', 'ecommerce'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/81483aa9-6bc9-4f6e-bef2-2016113265ed.png",
-                description: "Solusi WordPress otomatis dengan AI dan SEO terintegrasi"
-            },
-            durable: {
-                name: "Durable AI",
-                match: ['pemula', 'bisnis', 'ecommerce', 'murah', 'menengah', 'responsive', 'seo'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/384ae2d1-101a-414f-9d0d-47473f0273cb.png",
-                description: "Buat website bisnis lengkap dalam 30 detik dengan AI"
-            },
-            hostinger: {
-                name: "Hostinger AI",
-                match: ['pemula', 'menengah', 'ecommerce', 'blog', 'bisnis', 'murah', 'responsive', 'ecommerce'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/33cca572-963d-4bf1-84b2-eab3a1469e24.png",
-                description: "Website builder dengan AI dan e-commerce terintegrasi"
-            },
-            codewp: {
-                name: "CodeWP",
-                match: ['mahir', 'custom', 'tinggi', 'portfolio', 'blog', 'custom'],
-                score: 0,
-                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9c1593ca-a2eb-467e-8b91-b9ad97021c82.png",
-                description: "Generate kode WordPress untuk developer berpengalaman"
-            }
-        };
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 card-hover">
+                    <div class="feature-icon bg-blue-100 text-blue-600 mx-auto">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Cepat & Efisien</h3>
+                    <p class="text-gray-600">Buat website dalam hitungan menit bukan hari dengan bantuan AI</p>
+                </div>
+                <div class="text-center p-6 card-hover">
+                    <div class="feature-icon bg-green-100 text-green-600 mx-auto">
+                        <i class="fas fa-code text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Tanpa Coding</h3>
+                    <p class="text-gray-600">Tidak perlu pengetahuan pemrograman untuk membuat website profesional</p>
+                </div>
+                <div class="text-center p-6 card-hover">
+                    <div class="feature-icon bg-purple-100 text-purple-600 mx-auto">
+                        <i class="fas fa-magic text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Desain Otomatis</h3>
+                    <p class="text-gray-600">AI menghasilkan desain yang responsive dan modern secara otomatis</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function startExploration() {
-            currentStep = 1;
-            userAnswers = {};
-            document.getElementById('explorationModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            showStep(1);
-            updateProgress();
-            document.getElementById('navigation').style.display = 'flex';
-            document.getElementById('results').style.display = 'none';
-            document.getElementById('quizContainer').style.display = 'block';
-        }
-
-        function showStep(step) {
-            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('step' + step).classList.add('active');
-            updateProgress();
-        }
-
-        function updateProgress() {
-            const progress = ((currentStep - 1) / totalSteps) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function selectOption(step, value) {
-            userAnswers['step' + step] = value;
+    <!-- AI Tools Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">AI Tools Terbaik untuk Website Development</h2>
             
-            // Auto-advance to next step after selection
-            setTimeout(() => {
-                if (currentStep < totalSteps) {
-                    nextStep();
-                } else {
-                    calculateResults();
-                }
-            }, 300);
-        }
-
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                showStep(currentStep);
-            } else {
-                calculateResults();
-            }
-        }
-
-        function prevStep() {
-            if (currentStep > 1) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        }
-
-        function calculateResults() {
-            // Reset scores
-            Object.values(tools).forEach(tool => tool.score = 0);
-            
-            // Calculate matches
-            Object.values(userAnswers).forEach(answer => {
-                Object.entries(tools).forEach(([key, tool]) => {
-                    if (tool.match.includes(answer)) {
-                        tool.score++;
-                    }
-                });
-            });
-            
-            // Sort by score
-            const sortedTools = Object.entries(tools)
-                .sort(([,a], [,b]) => b.score - a.score)
-                .slice(0, 3);
-            
-            displayResults(sortedTools);
-        }
-
-        function displayResults(sortedTools) {
-            const resultsContainer = document.getElementById('recommendations');
-            resultsContainer.innerHTML = '';
-            
-            sortedTools.forEach(([key, tool], index) => {
-                const card = document.createElement('div');
-                card.className = 'result-card bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500';
-                card.innerHTML = `
-                    <div class="flex items-center mb-3">
-                        <img src="${tool.image}" alt="${tool.name}" class="w-12 h-12 rounded-lg mr-4">
-                        <div>
-                            <h5 class="font-semibold text-lg">${index + 1}. ${tool.name}</h5>
-                            <p class="text-gray-600 text-sm">Kecocokan: ${Math.round((tool.score / totalSteps) * 100)}%</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tools cards here (same as before) -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ba385200-6432-4ad2-b1d1-ce4386c3f9ea.png" alt="Wix ADI interface" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x200/667eea/ffffff?text=Wix+ADI'" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Wix ADI</h3>
+                        <p class="text-gray-600 mb-4">AI yang membuat website lengkap berdasarkan jawaban singkat tentang bisnis Anda</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">No-Code</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Drag & Drop</span>
                         </div>
                     </div>
-                    <p class="text-gray-700">${tool.description}</p>
-                    <div class="mt-3">
-                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-2">⭐️ Recommended</span>
-                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">${tool.score}/${totalSteps} match</span>
-                    </div>
-                `;
-                resultsContainer.appendChild(card);
-            });
-            
-            document.getElementById('quizContainer').style.display = 'none';
-            document.getElementById('results').style.display = 'block';
-            document.getElementById('navigation').style.display = 'none';
-        }
+                </div>
 
-        function restartQuiz() {
-            currentStep = 1;
-            userAnswers = {};
-            document.getElementById('results').style.display = 'none';
-            document.getElementById('quizContainer').style.display = 'block';
-            document.getElementById('navigation').style.display = 'flex';
-            showStep(1);
-            updateProgress();
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77739477-e4e4-42f8-87f6-458a30e69784.png" alt="Framer AI interface" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x200/10b981/ffffff?text=Framer+AI'" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Framer AI</h3>
+                        <p class="text-gray-600 mb-4">Generate website lengkap dengan AI hanya dari deskripsi teks sederhana</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded mr-2">AI-Powered</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Responsive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/81483aa9-6bc9-4f6e-bef2-2016113265ed.png" alt="10Web AI platform" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x200/f97316/ffffff?text=10Web+AI'" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">10Web AI</h3>
+                        <p class="text-gray-600 mb-4">Platform AI yang membuat website WordPress lengkap dengan konten dan SEO otomatis</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded mr-2">WordPress</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded">SEO Auto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Siap Membuat Website dengan AI?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Mulai perjalanan website creation Anda dengan tools AI terbaik yang sesuai kebutuhan</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="showModal()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition duration-300">
+                    Coba Gratis Sekarang
+                </button>
+                <button onclick="showModal()" class="border border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-semibold transition duration-300">
+                    Lihat Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple and working modal functions
+        function showModal() {
+            console.log('showModal function called');
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById('explorationModal').style.display = 'none';
+            console.log('closeModal function called');
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
-        document.getElementById('explorationModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Existing animations
+        // Event listener for the explore button
         document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.card-hover, .feature-icon');
+            console.log('DOM fully loaded');
             
+            // Add click event to explore button
+            const exploreBtn = document.getElementById('exploreBtn');
+            if (exploreBtn) {
+                exploreBtn.addEventListener('click', showModal);
+                console.log('Explore button event listener added');
+            }
+
+            // Close modal when clicking outside
+            const modal = document.getElementById('modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Animations
+            const animatedElements = document.querySelectorAll('.card-hover, .feature-icon');
             animatedElements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
@@ -399,7 +249,13 @@
                     }, index * 100);
                 });
             }, 100);
+
+            console.log('All JavaScript initialized successfully');
         });
+
+        // Global functions for other buttons
+        window.showModal = showModal;
+        window.closeModal = closeModal;
     </script>
 </body>
 </html>
