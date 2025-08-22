@@ -26,9 +26,40 @@
             border-radius: 12px;
             margin-bottom: 1rem;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-4">Coming Soon!</h3>
+            <p class="text-gray-600 mb-6">Fitur ini sedang dalam pengembangan. Stay tuned!</p>
+            <button onclick="closeModal()" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700">
+                Tutup
+            </button>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="gradient-bg text-white">
         <div class="container mx-auto px-6 py-12">
@@ -36,7 +67,7 @@
                 <div class="md:w-1/2 mb-8 md:mb-0">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">AI Khusus Pembuatan Website</h1>
                     <p class="text-xl mb-6">Temukan alat AI terbaik untuk membangun website modern dan profesional dengan mudah</p>
-                    <button class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                    <button onclick="showModal()" class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
                         Mulai Eksplorasi
                     </button>
                 </div>
@@ -295,10 +326,10 @@
             <h2 class="text-3xl font-bold mb-6">Siap Membuat Website dengan AI?</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Mulai perjalanan website creation Anda dengan tools AI terbaik yang sesuai kebutuhan</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition duration-300">
+                <button onclick="showModal()" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition duration-300">
                     Coba Gratis Sekarang
                 </button>
-                <button class="border border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-semibold transition duration-300">
+                <button onclick="showModal()" class="border border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-semibold transition duration-300">
                     Lihat Demo
                 </button>
             </div>
@@ -368,7 +399,38 @@
                 });
             }, 100);
         });
+
+        // Modal functionality
+        function showModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Add click event to all buttons and links for demo
+        document.querySelectorAll('button, a').forEach(element => {
+            if (!element.onclick) {
+                element.addEventListener('click', function(e) {
+                    if (this.tagName === 'A') {
+                        e.preventDefault();
+                    }
+                    showModal();
+                });
+            }
+        });
     </script>
 </body>
 </html>
-
